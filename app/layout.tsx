@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Share_Tech_Mono } from 'next/font/google';
 import './globals.css';
+import { PWAProvider } from '@/components/PWAProvider';
 
 const shareTechMono = Share_Tech_Mono({
   weight: '400',
@@ -9,11 +10,93 @@ const shareTechMono = Share_Tech_Mono({
   display: 'swap',
 });
 
+const APP_NAME = 'CNPJ Terminal // CyberLookup Enterprise';
+const APP_DESCRIPTION =
+  'Plataforma web ultrarrápida de consulta de dados cadastrais corporativos (CNPJ) com dados da Receita Federal, interface brutalista Matrix CRT e áudio sintetizado 16-bits.';
+const APP_URL = 'https://eager-fermi.vercel.app';
+
+export const viewport: Viewport = {
+  themeColor: '#020B05',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: 'CNPJ Terminal // CyberLookup Enterprise',
-  description: 'Plataforma brutalista de consulta cadastral corporativa (CNPJ) com interface retro-futurista CRT Matrix.',
-  keywords: ['CNPJ', 'Consulta Empresarial', 'Receita Federal', 'CyberLookup', 'Matrix Terminal', 'Brutalismo Digital'],
+  metadataBase: new URL(APP_URL),
+  title: {
+    default: APP_NAME,
+    template: `%s // ${APP_NAME}`,
+  },
+  description: APP_DESCRIPTION,
+  applicationName: 'CNPJ Terminal',
   authors: [{ name: 'CyberLookup Security Division' }],
+  generator: 'Next.js 14 App Router',
+  keywords: [
+    'CNPJ',
+    'Consulta CNPJ',
+    'Receita Federal',
+    'QSA',
+    'Razão Social',
+    'CNAE',
+    'CyberLookup',
+    'Matrix Terminal',
+    'Brutalismo Digital',
+    'PWA',
+    'Vercel Edge Network',
+  ],
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'CNPJ Terminal',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: ['/icon.svg'],
+    apple: [
+      { url: '/apple-touch-icon.svg', sizes: '180x180', type: 'image/svg+xml' },
+    ],
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    url: APP_URL,
+    title: APP_NAME,
+    description: APP_DESCRIPTION,
+    siteName: 'CNPJ Terminal CyberLookup',
+    images: [
+      {
+        url: '/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'CNPJ Terminal // CyberLookup Enterprise Banner Preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: APP_NAME,
+    description: APP_DESCRIPTION,
+    images: ['/og-image.svg'],
+    creator: '@cyberlookup',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -23,8 +106,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={shareTechMono.variable}>
+      <head>
+        <link rel="canonical" href={APP_URL} />
+      </head>
       <body className="bg-matrix-black text-matrix-green font-mono antialiased selection:bg-matrix-green selection:text-matrix-black">
         {children}
+        <PWAProvider />
       </body>
     </html>
   );

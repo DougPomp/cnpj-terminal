@@ -1,0 +1,34 @@
+{
+  "name": "CNPJ Terminal // CyberLookup Enterprise",
+  "short_name": "CNPJ Terminal",
+  "description": "Plataforma web ultrarrápida de consulta cadastral corporativa (CNPJ) com interface Matrix CRT Brutalista.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020B05",
+  "theme_color": "#020B05",
+  "orientation": "any",
+  "scope": "/",
+  "categories": ["utilities", "business", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Examinar CNPJ",
+      "short_name": "Buscar",
+      "description": "Abrir consulta de CNPJ imediata",
+      "url": "/"
+    }
+  ]
+}

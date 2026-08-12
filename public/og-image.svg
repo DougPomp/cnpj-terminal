@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Fundo Matrix Deep Black -->
+  <rect width="1200" height="630" fill="#020B05" />
+
+  <!-- Grid / Scanline Background Effect -->
+  <pattern id="scanlines" width="100" height="8" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="4" x2="100" y2="4" stroke="#000000" stroke-opacity="0.4" stroke-width="4" />
+  </pattern>
+  
+  <pattern id="matrix-rain" width="60" height="60" patternUnits="userSpaceOnUse">
+    <text x="5" y="20" font-family="monospace" font-size="14" fill="#00FF41" opacity="0.15">ｱｲｳｴｵ</text>
+    <text x="25" y="40" font-family="monospace" font-size="14" fill="#33FF77" opacity="0.12">01234</text>
+    <text x="45" y="55" font-family="monospace" font-size="14" fill="#00FF41" opacity="0.18">ｶｷｸｹｺ</text>
+  </pattern>
+
+  <rect width="1200" height="630" fill="url(#matrix-rain)" />
+  <rect width="1200" height="630" fill="url(#scanlines)" />
+
+  <!-- Moldura Brutalista Verde -->
+  <rect x="30" y="30" width="1140" height="570" fill="#00220A" fill-opacity="0.85" stroke="#00FF41" stroke-width="8" />
+  
+  <defs>
+    <filter id="glow-heavy">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sombra Brutalista do Card Central -->
+  <rect x="75" y="75" width="1060" height="490" fill="#00FF41" opacity="0.15" />
+  <rect x="70" y="70" width="1060" height="490" fill="#020B05" stroke="#00FF41" stroke-width="4" />
+
+  <!-- Cabeçalho do Card estilo Terminal -->
+  <rect x="70" y="70" width="1060" height="60" fill="#00220A" stroke="#00FF41" stroke-width="4" />
+  <circle cx="110" cy="100" r="12" fill="#FF0033" />
+  <circle cx="150" cy="100" r="12" fill="#FFD700" />
+  <circle cx="190" cy="100" r="12" fill="#00FF41" />
+  <text x="220" y="107" font-family="monospace" font-size="22" font-weight="bold" fill="#00FF41">CYBERLOOKUP_ENTERPRISE // VERCEL_EDGE_NODE_ONLINE</text>
+
+  <!-- Conteúdo Principal -->
+  <!-- Prompt Symbol -->
+  <text x="110" y="240" font-family="monospace" font-size="80" font-weight="bold" fill="#00FF41" filter="url(#glow-heavy)">&gt;_</text>
+  
+  <!-- Título do Projeto -->
+  <text x="210" y="235" font-family="monospace" font-size="64" font-weight="bold" fill="#00FF41" filter="url(#glow-heavy)">CNPJ TERMINAL</text>
+  <text x="210" y="295" font-family="monospace" font-size="32" font-weight="bold" fill="#33FF77" letter-spacing="4">CYBERLOOKUP ENTERPRISE v2.4</text>
+
+  <!-- Descrição -->
+  <text x="110" y="370" font-family="monospace" font-size="24" fill="#00FF41" opacity="0.9">
+    Plataforma ultrarrápida de consulta cadastral corporativa brasileira.
+  </text>
+  <text x="110" y="410" font-family="monospace" font-size="22" fill="#33FF77" opacity="0.8">
+    Razão Social, CNAE, Capital Social, QSA e Endereço com interface Matrix CRT.
+  </text>
+
+  <!-- Badges Brutalistas no Rodapé do Banner -->
+  <rect x="110" y="465" width="260" height="45" fill="#020B05" stroke="#00FF41" stroke-width="3" />
+  <text x="125" y="494" font-family="monospace" font-size="18" font-weight="bold" fill="#00FF41">[ STATUS: ONLINE // OK ]</text>
+
+  <rect x="390" y="465" width="280" height="45" fill="#020B05" stroke="#FFD700" stroke-width="3" />
+  <text x="405" y="494" font-family="monospace" font-size="18" font-weight="bold" fill="#FFD700">[ 16-BIT BGM SYNTH ]</text>
+
+  <rect x="690" y="465" width="230" height="45" fill="#020B05" stroke="#33FF77" stroke-width="3" />
+  <text x="705" y="494" font-family="monospace" font-size="18" font-weight="bold" fill="#33FF77">[ PWA READY // SWR ]</text>
+</svg>

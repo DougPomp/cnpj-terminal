@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#020B05" />
+  
+  <!-- Borda Brutalista Verde -->
+  <rect x="24" y="24" width="464" height="464" fill="none" stroke="#00FF41" stroke-width="16" />
+  <rect x="36" y="36" width="440" height="440" fill="#00220A" />
+
+  <!-- Sombra Interna CRT -->
+  <rect x="36" y="36" width="440" height="440" fill="url(#crt-gradient)" opacity="0.3" />
+
+  <defs>
+    <linearGradient id="crt-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00FF41" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.8" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Cabeçalho do Terminal Icon -->
+  <rect x="64" y="72" width="384" height="48" fill="#020B05" stroke="#00FF41" stroke-width="6" />
+  <circle cx="96" cy="96" r="12" fill="#FF0033" />
+  <circle cx="132" cy="96" r="12" fill="#FFD700" />
+  <circle cx="168" cy="96" r="12" fill="#00FF41" />
+
+  <!-- Texto / Ícone de Prompt -->
+  <text x="80" y="220" font-family="monospace" font-size="72" font-weight="bold" fill="#00FF41" filter="url(#glow)">&gt;_ CNPJ</text>
+  <text x="80" y="290" font-family="monospace" font-size="48" font-weight="bold" fill="#33FF77" filter="url(#glow)">TERMINAL</text>
+  
+  <!-- Linha Decorativa Brutalista -->
+  <line x1="80" y1="320" x2="432" y2="320" stroke="#00FF41" stroke-width="8" />
+
+  <!-- Código de Barras / Cyber Matrix Lines -->
+  <rect x="80" y="350" width="24" height="70" fill="#00FF41" />
+  <rect x="116" y="350" width="12" height="70" fill="#00FF41" />
+  <rect x="140" y="350" width="36" height="70" fill="#00FF41" />
+  <rect x="188" y="350" width="16" height="70" fill="#00FF41" />
+  <rect x="216" y="350" width="48" height="70" fill="#00FF41" />
+  <rect x="276" y="350" width="20" height="70" fill="#00FF41" />
+  <rect x="308" y="350" width="40" height="70" fill="#00FF41" />
+  <rect x="360" y="350" width="12" height="70" fill="#00FF41" />
+  <rect x="384" y="350" width="48" height="70" fill="#00FF41" />
+</svg>
