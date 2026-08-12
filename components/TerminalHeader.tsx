@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, Volume2, VolumeX, Monitor, ShieldCheck } from 'lucide-react';
+import { Terminal, Volume2, VolumeX, Monitor, ShieldCheck, Music } from 'lucide-react';
 import { soundFx } from '@/lib/audio';
 
 interface TerminalHeaderProps {
   isMuted: boolean;
   onToggleSound: () => void;
+  isBgmActive: boolean;
+  onToggleBgm: () => void;
   crtEnabled: boolean;
   onToggleCrt: () => void;
 }
@@ -14,6 +16,8 @@ interface TerminalHeaderProps {
 export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
   isMuted,
   onToggleSound,
+  isBgmActive,
+  onToggleBgm,
   crtEnabled,
   onToggleCrt,
 }) => {
@@ -34,6 +38,10 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
   const handleSoundClick = () => {
     onToggleSound();
     soundFx.playKeyPress();
+  };
+
+  const handleBgmClick = () => {
+    onToggleBgm();
   };
 
   const handleCrtClick = () => {
@@ -63,7 +71,7 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
         </div>
 
         {/* Status do Node & Relógio BRT */}
-        <div className="flex items-center gap-4 text-xs font-mono">
+        <div className="flex items-center gap-3 text-xs font-mono flex-wrap justify-center">
           <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 border border-matrix-muted bg-matrix-black">
             <ShieldCheck className="w-4 h-4 text-matrix-green" />
             <span className="text-matrix-green/90">VERCEL_EDGE_NODE</span>
@@ -76,6 +84,21 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
 
           {/* Controles do Terminal */}
           <div className="flex items-center gap-2">
+            {/* Botão de Música 16-bits */}
+            <button
+              onClick={handleBgmClick}
+              className={`px-2.5 py-1 border-2 flex items-center gap-1.5 font-bold transition-all ${
+                isBgmActive
+                  ? 'border-matrix-mint text-matrix-black bg-matrix-mint animate-pulse'
+                  : 'border-matrix-green text-matrix-green bg-matrix-darkGreen brutalist-button'
+              }`}
+              title="Chavear Música de Fundo 16-Bits (MIDI Synth)"
+            >
+              <Music className="w-4 h-4" />
+              <span className="hidden sm:inline">{isBgmActive ? 'BGM_16BIT: ON' : 'BGM: OFF'}</span>
+            </button>
+
+            {/* Efeitos FX */}
             <button
               onClick={handleSoundClick}
               className={`px-2.5 py-1 border-2 flex items-center gap-1.5 font-bold transition-all ${
@@ -83,12 +106,13 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
                   ? 'border-matrix-muted text-matrix-muted bg-matrix-black'
                   : 'border-matrix-green text-matrix-green bg-matrix-darkGreen brutalist-button'
               }`}
-              title="Chavear Efeitos Sonoros"
+              title="Chavear Efeitos Sonoros FX"
             >
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              <span className="hidden sm:inline">{isMuted ? 'MUTE' : 'AUDIO_ON'}</span>
+              <span className="hidden sm:inline">{isMuted ? 'MUTE' : 'FX_ON'}</span>
             </button>
 
+            {/* CRT Screen */}
             <button
               onClick={handleCrtClick}
               className={`px-2.5 py-1 border-2 flex items-center gap-1.5 font-bold transition-all ${

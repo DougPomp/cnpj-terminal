@@ -17,6 +17,7 @@ const LOCAL_STORAGE_KEY = 'cnpj_terminal_history_v1';
 
 export default function Home() {
   const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [isBgmActive, setIsBgmActive] = useState<boolean>(false);
   const [crtEnabled, setCrtEnabled] = useState<boolean>(true);
   const [companyData, setCompanyData] = useState<CompanyData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -47,7 +48,7 @@ export default function Home() {
     }
 
     addLog('info', 'CNPJ Terminal Engine inicializado em Vercel Edge Server.');
-    addLog('info', 'Protocolos HTTPS/SWR ativados com fallback para BrasilAPI e MinhaReceita.');
+    addLog('info', 'Sintetizador 16-bit MIDI Chiptune pronto para execução.');
   }, [addLog]);
 
   // Salvar no histórico
@@ -77,7 +78,14 @@ export default function Home() {
     const nextMuted = !isMuted;
     setIsMuted(nextMuted);
     soundFx.setMuted(nextMuted);
+    if (nextMuted) setIsBgmActive(false);
     addLog('info', `Efeitos sonoros alterados para: ${nextMuted ? 'MUTE' : 'AUDIO_ON'}`);
+  };
+
+  const handleToggleBgm = () => {
+    const active = soundFx.toggleBgm();
+    setIsBgmActive(active);
+    addLog('info', `Trilha de fundo 16-bit Chiptune BGM: ${active ? 'PLAYING' : 'STOPPED'}`);
   };
 
   const handleToggleCrt = () => {
@@ -145,6 +153,8 @@ export default function Home() {
       <TerminalHeader
         isMuted={isMuted}
         onToggleSound={handleToggleSound}
+        isBgmActive={isBgmActive}
+        onToggleBgm={handleToggleBgm}
         crtEnabled={crtEnabled}
         onToggleCrt={handleToggleCrt}
       />
