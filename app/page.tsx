@@ -8,6 +8,7 @@ import { CnpjInputForm } from '@/components/CnpjInputForm';
 import { CompanyResultCard } from '@/components/CompanyResultCard';
 import { TerminalConsoleLogs, LogEntry } from '@/components/TerminalConsoleLogs';
 import { SearchHistory, HistoryItem } from '@/components/SearchHistory';
+import { TerminalInfoFaq } from '@/components/TerminalInfoFaq';
 import { TerminalFooter } from '@/components/TerminalFooter';
 import { CompanyData, formatarCNPJ } from '@/lib/cnpj';
 import { soundFx } from '@/lib/audio';
@@ -161,17 +162,17 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto px-4 py-6 relative z-10">
         {/* Banner Brutalista de Boas-Vindas */}
-        <div className="brutalist-card p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <section id="pesquisa" className="brutalist-card p-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-matrix-green text-matrix-black border-2 border-matrix-green">
               <Cpu className="w-6 h-6" />
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-bold uppercase tracking-wider text-matrix-mint">
-                TERMINAL DE CONSULTA DE DADOS CADASTRAIS // RECEITA FEDERAL
+                Consulta Cadastral Corporativa // CNPJ Terminal
               </h2>
-              <p className="text-xs text-matrix-green/70 font-mono">
-                Digite um CNPJ de 14 dígitos para decodificar Razão Social, CNAE, Capital e Quadro Societário (QSA).
+              <p className="text-xs text-matrix-green/80 font-mono">
+                Digite um CNPJ de 14 dígitos para consultar dados cadastrais oficiais da Receita Federal do Brasil (Razão Social, CNAE, QSA e Capital).
               </p>
             </div>
           </div>
@@ -179,17 +180,19 @@ export default function Home() {
             <CheckCircle className="w-4 h-4 text-matrix-green" />
             <span>SWR CACHE: 24h REVALIDATE</span>
           </div>
-        </div>
+        </section>
 
         {/* Form de Busca */}
         <CnpjInputForm onSearch={handleSearchCNPJ} isLoading={isLoading} />
 
         {/* Histórico de Pesquisas */}
-        <SearchHistory
-          history={history}
-          onSelectHistory={handleSearchCNPJ}
-          onClearHistory={handleClearHistory}
-        />
+        <div id="historico">
+          <SearchHistory
+            history={history}
+            onSelectHistory={handleSearchCNPJ}
+            onClearHistory={handleClearHistory}
+          />
+        </div>
 
         {/* Caixa de Alerta de Erro */}
         {errorMsg && (
@@ -224,7 +227,12 @@ export default function Home() {
         {companyData && !isLoading && <CompanyResultCard data={companyData} />}
 
         {/* Console Logs do Terminal */}
-        <TerminalConsoleLogs logs={logs} onClearLogs={handleClearLogs} />
+        <div id="logs">
+          <TerminalConsoleLogs logs={logs} onClearLogs={handleClearLogs} />
+        </div>
+
+        {/* Seção FAQ e Sobre o Sistema para SEO */}
+        <TerminalInfoFaq />
       </main>
 
       <TerminalFooter />

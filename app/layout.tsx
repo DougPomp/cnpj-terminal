@@ -11,8 +11,9 @@ const shareTechMono = Share_Tech_Mono({
 });
 
 const APP_NAME = 'CNPJ Terminal // CyberLookup Enterprise';
+// Meta description otimizada com 139 caracteres (perfeita para Google e redes sociais)
 const APP_DESCRIPTION =
-  'Plataforma web ultrarrápida de consulta de dados cadastrais corporativos (CNPJ) com dados da Receita Federal, interface brutalista Matrix CRT e áudio sintetizado 16-bits.';
+  'Consulta de CNPJ ultrarrápida com dados oficiais da Receita Federal, Quadro Societário (QSA), CNAE e Capital em interface Matrix CRT.';
 const APP_URL = 'https://eager-fermi.vercel.app';
 
 export const viewport: Viewport = {
@@ -33,17 +34,18 @@ export const metadata: Metadata = {
   authors: [{ name: 'CyberLookup Security Division' }],
   generator: 'Next.js 14 App Router',
   keywords: [
-    'CNPJ',
+    'CNPJ Terminal',
+    'Consulta Cadastral Corporativa',
     'Consulta CNPJ',
     'Receita Federal',
+    'Quadro Societário',
     'QSA',
     'Razão Social',
     'CNAE',
+    'Capital Social',
     'CyberLookup',
-    'Matrix Terminal',
+    'Matrix CRT',
     'Brutalismo Digital',
-    'PWA',
-    'Vercel Edge Network',
   ],
   manifest: '/manifest.json',
   appleWebApp: {

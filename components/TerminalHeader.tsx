@@ -52,20 +52,20 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
   return (
     <header className="border-b-2 border-matrix-green bg-matrix-darkGreen/80 backdrop-blur px-4 py-3 sticky top-0 z-30 shadow-[0_4px_15px_rgba(0,255,65,0.15)]">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-        {/* Marca & Título */}
+        {/* Marca & Título H1 */}
         <div className="flex items-center gap-3">
           <div className="p-1.5 border-2 border-matrix-green bg-matrix-black">
             <Terminal className="w-6 h-6 text-matrix-green animate-pulse" />
           </div>
           <div>
             <h1 className="text-xl md:text-2xl font-bold tracking-wider matrix-glow uppercase flex items-center gap-2">
-              <span>CNPJ TERMINAL</span>
+              <span>CNPJ Terminal</span>
               <span className="text-xs px-1.5 py-0.5 border border-matrix-green bg-matrix-black text-matrix-mint">
                 v2.4_EDGE
               </span>
             </h1>
-            <p className="text-xs text-matrix-green/70 tracking-widest hidden sm:block">
-              CYBERLOOKUP ENTERPRISE // RECEITA FEDERAL DATA NETWORK
+            <p className="text-xs text-matrix-green/80 tracking-widest hidden sm:block">
+              CyberLookup Enterprise // Consulta Cadastral Corporativa da Receita Federal
             </p>
           </div>
         </div>
@@ -84,7 +84,6 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
 
           {/* Controles do Terminal */}
           <div className="flex items-center gap-2">
-            {/* Botão de Música 16-bits */}
             <button
               onClick={handleBgmClick}
               className={`px-2.5 py-1 border-2 flex items-center gap-1.5 font-bold transition-all ${
@@ -98,7 +97,6 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
               <span className="hidden sm:inline">{isBgmActive ? 'BGM_16BIT: ON' : 'BGM: OFF'}</span>
             </button>
 
-            {/* Efeitos FX */}
             <button
               onClick={handleSoundClick}
               className={`px-2.5 py-1 border-2 flex items-center gap-1.5 font-bold transition-all ${
@@ -112,7 +110,6 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
               <span className="hidden sm:inline">{isMuted ? 'MUTE' : 'FX_ON'}</span>
             </button>
 
-            {/* CRT Screen */}
             <button
               onClick={handleCrtClick}
               className={`px-2.5 py-1 border-2 flex items-center gap-1.5 font-bold transition-all ${
@@ -128,6 +125,26 @@ export const TerminalHeader: React.FC<TerminalHeaderProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Navegação Interna de Links para SEO */}
+      <nav className="max-w-7xl mx-auto mt-2 pt-2 border-t border-matrix-muted/40 flex items-center gap-4 text-xs font-mono overflow-x-auto">
+        <span className="text-matrix-green/60 select-none">&gt; NAV:</span>
+        <a href="#pesquisa" className="text-matrix-green hover:text-matrix-mint transition-colors whitespace-nowrap">
+          [01.CONSULTAR_CNPJ]
+        </a>
+        <a href="#historico" className="text-matrix-green hover:text-matrix-mint transition-colors whitespace-nowrap">
+          [02.HISTORICO_LOCAL]
+        </a>
+        <a href="#logs" className="text-matrix-green hover:text-matrix-mint transition-colors whitespace-nowrap">
+          [03.CONSOLE_LOGS]
+        </a>
+        <a href="#sobre" className="text-matrix-green hover:text-matrix-mint transition-colors whitespace-nowrap">
+          [04.SOBRE_SISTEMA]
+        </a>
+        <a href="#faq" className="text-matrix-green hover:text-matrix-mint transition-colors whitespace-nowrap">
+          [05.DUVIDAS_FREQUENTES]
+        </a>
+      </nav>
     </header>
   );
 };
