@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useSyncExternalStore, useCallback } from 'react';
 import { CRTContainer } from '@/components/CRTContainer';
 import { MatrixBackground } from '@/components/MatrixBackground';
 import { TerminalHeader } from '@/components/TerminalHeader';
@@ -16,6 +16,31 @@ import { Terminal, ShieldAlert, Cpu, CheckCircle } from 'lucide-react';
 
 const LOCAL_STORAGE_KEY = 'cnpj_terminal_history_v1';
 
+// Keep the server and first hydration render empty; reveal browser-only initial
+// state after hydration without an effect that immediately updates other state.
+const subscribeToHydration = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+function readInitialHistory(): HistoryItem[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+}
+
+function createLog(type: LogEntry['type'], message: string): LogEntry {
+  return {
+    id: Math.random().toString(36).substring(2, 9),
+    timestamp: new Date().toLocaleTimeString('pt-BR'),
+    type,
+    message,
+  };
+}
+
 export default function Home() {
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isBgmActive, setIsBgmActive] = useState<boolean>(false);
@@ -23,34 +48,18 @@ export default function Home() {
   const [companyData, setCompanyData] = useState<CompanyData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [logs, setLogs] = useState<LogEntry[]>([]);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const hydrated = useSyncExternalStore(subscribeToHydration, getClientSnapshot, getServerSnapshot);
+  const [logs, setLogs] = useState<LogEntry[]>(() => [
+    createLog('info', 'CNPJ Terminal Engine inicializado em Vercel Edge Server.'),
+    createLog('info', 'Sintetizador 16-bit MIDI Chiptune pronto para execução.'),
+  ]);
+  const [history, setHistory] = useState<HistoryItem[]>(readInitialHistory);
 
   // Auxiliar para registrar logs com timestamp
   const addLog = useCallback((type: 'info' | 'success' | 'warn' | 'error', message: string) => {
-    const newEntry: LogEntry = {
-      id: Math.random().toString(36).substring(2, 9),
-      timestamp: new Date().toLocaleTimeString('pt-BR'),
-      type,
-      message,
-    };
+    const newEntry = createLog(type, message);
     setLogs((prev) => [...prev, newEntry]);
   }, []);
-
-  // Carregar histórico local na montagem
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (saved) {
-        setHistory(JSON.parse(saved));
-      }
-    } catch {
-      // Ignorar erros de localStorage
-    }
-
-    addLog('info', 'CNPJ Terminal Engine inicializado em Vercel Edge Server.');
-    addLog('info', 'Sintetizador 16-bit MIDI Chiptune pronto para execução.');
-  }, [addLog]);
 
   // Salvar no histórico
   const saveToHistory = (data: CompanyData) => {
@@ -188,7 +197,7 @@ export default function Home() {
         {/* Histórico de Pesquisas */}
         <div id="historico">
           <SearchHistory
-            history={history}
+            history={hydrated ? history : []}
             onSelectHistory={handleSearchCNPJ}
             onClearHistory={handleClearHistory}
           />
@@ -228,7 +237,7 @@ export default function Home() {
 
         {/* Console Logs do Terminal */}
         <div id="logs">
-          <TerminalConsoleLogs logs={logs} onClearLogs={handleClearLogs} />
+          <TerminalConsoleLogs logs={hydrated ? logs : []} onClearLogs={handleClearLogs} />
         </div>
 
         {/* Seção FAQ e Sobre o Sistema para SEO */}

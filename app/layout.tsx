@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   description: APP_DESCRIPTION,
   applicationName: 'CNPJ Terminal',
   authors: [{ name: 'CyberLookup Security Division' }],
-  generator: 'Next.js 14 App Router',
+  generator: 'Next.js App Router',
   keywords: [
     'CNPJ Terminal',
     'Consulta Cadastral Corporativa',

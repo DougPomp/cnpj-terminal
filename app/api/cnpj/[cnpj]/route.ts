@@ -5,9 +5,9 @@ export const runtime = 'nodejs';
 
 export async function GET(
   request: Request,
-  { params }: { params: { cnpj: string } }
+  { params }: { params: Promise<{ cnpj: string }> }
 ) {
-  const cnpjParam = params.cnpj || '';
+  const cnpjParam = (await params).cnpj || '';
   const cleaned = cleanCNPJ(cnpjParam);
 
   if (cleaned.length !== 14 || !validarCNPJ(cleaned)) {

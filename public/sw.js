@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cnpj-terminal-v1';
+const CACHE_NAME = 'cnpj-terminal-v2-next16';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',

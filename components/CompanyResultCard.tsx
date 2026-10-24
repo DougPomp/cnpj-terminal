@@ -24,6 +24,7 @@ interface CompanyResultCardProps {
 
 export const CompanyResultCard: React.FC<CompanyResultCardProps> = ({ data }) => {
   const [copied, setCopied] = useState<boolean>(false);
+  const [fallbackConsultedAt] = useState(() => new Date().toISOString());
 
   const getStatusBadge = (status: string) => {
     const s = (status || '').toUpperCase();
@@ -39,14 +40,14 @@ export const CompanyResultCard: React.FC<CompanyResultCardProps> = ({ data }) =>
       return (
         <span className="px-3 py-1 border-2 border-matrix-warning bg-matrix-black text-matrix-warning font-bold text-sm matrix-glow-warning flex items-center gap-2">
           <span className="w-2.5 h-2.5 bg-matrix-warning rounded-full" />
-          [ STATUS: {s} // WARN ]
+          [ STATUS: {s} {'//'} WARN ]
         </span>
       );
     }
     return (
       <span className="px-3 py-1 border-2 border-matrix-red bg-matrix-black text-matrix-red font-bold text-sm matrix-glow-red flex items-center gap-2">
         <span className="w-2.5 h-2.5 bg-matrix-red rounded-full animate-pulse" />
-        [ STATUS: {s || 'INAPTA'} // FAIL ]
+        [ STATUS: {s || 'INAPTA'} {'//'} FAIL ]
       </span>
     );
   };
@@ -66,8 +67,8 @@ export const CompanyResultCard: React.FC<CompanyResultCardProps> = ({ data }) =>
           <div className="flex items-center gap-2 text-xs font-mono text-matrix-green/70 mb-1">
             <Server className="w-3.5 h-3.5" />
             <span>NODE_DATA: {data.fonte_dados || 'DESCONHECIDO'}</span>
-            <span>//</span>
-            <span>{new Date(data.data_consulta || Date.now()).toLocaleTimeString()}</span>
+            <span>{'//'}</span>
+            <span>{new Date(data.data_consulta || fallbackConsultedAt).toLocaleTimeString()}</span>
           </div>
           <h2 className="text-xl sm:text-3xl font-bold uppercase tracking-wider matrix-glow flex items-center gap-3 flex-wrap">
             <CipherEffect text={data.razao_social} />

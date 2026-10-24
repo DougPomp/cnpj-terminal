@@ -48,7 +48,7 @@ export const TerminalInfoFaq: React.FC = () => {
               <span>ALTA PERFORMANCE EDGE</span>
             </div>
             <p className="text-matrix-green/80 leading-relaxed">
-              Desenvolvido em Next.js 14 App Router com execução Serverless Edge Network da Vercel, entregando respostas em menos de 100ms com revalidação SWR de 24 horas.
+              Desenvolvido em Next.js App Router com execução Serverless Edge Network da Vercel, entregando respostas em menos de 100ms com revalidação SWR de 24 horas.
             </p>
           </div>
 

@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://eager-fermi.vercel.app"><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel Deploy" /></a>
-  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js%2014-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 14" /></a>
+  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js%2016-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 16" /></a>
   <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
   <img src="https://img.shields.io/badge/PWA-Ready-00FF41?style=for-the-badge&logo=pwa&logoColor=black" alt="PWA Ready" />
   <img src="https://img.shields.io/badge/Audio-16--Bit%20MIDI%20Synth-FFD700?style=for-the-badge" alt="16-Bit Audio Synth" />
@@ -42,7 +42,7 @@
 
 | Tecnologia | Função no Projeto |
 | :--- | :--- |
-| **Next.js 14 (App Router)** | Framework React full-stack com Serverless Edge Functions |
+| **Next.js 16 (App Router)** | Framework React full-stack com Serverless Edge Functions |
 | **TypeScript** | Tipagem estática rigorosa para dados empresariais e contratos de API |
 | **Tailwind CSS** | Estilização brutalista customizada sem border-radius (`0px`) e sombras 90° |
 | **Web Audio API** | Sintetizador de áudio nativo para efeitos sonoros e música de fundo 16-bits |
@@ -95,8 +95,8 @@ eager-fermi/
 ## 🚀 Como Executar o Projeto Localmente
 
 ### Pré-requisitos
-- **Node.js**: versão 18.17.0 ou superior
-- **npm**: versão 9.0.0 ou superior
+- **Node.js**: versão 24 LTS para esta preparação (mínimo do Next: 20.9.0)
+- **npm**: versão compatível com Node.js 24
 
 ### Passos
 

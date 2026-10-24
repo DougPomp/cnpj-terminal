@@ -15,11 +15,10 @@ export const CipherEffect: React.FC<CipherEffectProps> = ({
   speed = 25,
   className = '',
 }) => {
-  const [displayText, setDisplayText] = useState<string>('');
+  const [display, setDisplay] = useState({ source: text, value: '' });
 
   useEffect(() => {
     if (!text) {
-      setDisplayText('');
       return;
     }
 
@@ -40,10 +39,9 @@ export const CipherEffect: React.FC<CipherEffectProps> = ({
         }
       }
 
-      setDisplayText(result);
+      setDisplay({ source: text, value: result });
 
       if (frame >= totalFrames) {
-        setDisplayText(text);
         clearInterval(interval);
       }
     }, speed);
@@ -51,5 +49,5 @@ export const CipherEffect: React.FC<CipherEffectProps> = ({
     return () => clearInterval(interval);
   }, [text, speed]);
 
-  return <span className={className}>{displayText || text}</span>;
+  return <span className={className}>{display.source === text ? display.value || text : text}</span>;
 };
